@@ -202,7 +202,10 @@ class LammpsSnap(Calculator):
         # output bispectrum components of atoms
 
         lmp_bispectrum_atoms = _extract_compute_np(self._lmp, "snap_atom", 1, 2, (num_atoms, ncols_bispectrum))
-        print('Saving bispectrum components of atoms before error calc')
+        print('Saving bispectrum components of atoms before error calc, num_atoms = ',num_atoms)
+
+        with open("bispectrum_numatoms.csv", "a") as f:
+            f.write('%d\n' % num_atoms)
 
         with open("bispectrum_atoms.csv", "ab") as f:
             # f.write(b"\n")
